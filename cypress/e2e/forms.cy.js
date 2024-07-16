@@ -13,7 +13,11 @@ describe("form tests", () => {
     cy.contains(/Successfully subbed: ryan@coderyan.com!/i).should("not.exist");
 
     cy.get("@subscribe-input").type("ryan@coderyan.io");
+    cy.contains(/invalid email: ryan@coderyan.io!/i).should("not.exist");
     cy.getDataTest("subscribe-button").click();
     cy.contains(/invalid email: ryan@coderyan.io!/i).should("exist");
+    cy.wait(5000);
+
+    cy.get("@subscribe-input").type("ryan@coderyan.io");
   });
 });
